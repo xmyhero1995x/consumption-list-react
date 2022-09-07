@@ -30,9 +30,10 @@ const Year = styled.p`
 `;
 
 export const CostDate = (props) => {
-  const month = props.date.toLocaleString("ru-RU", { month: "long" });
-  const year = props.date.getFullYear();
-  const day = props.date.toLocaleString("ru-RU", { day: "2-digit" });
+  const example = undefined;
+  const month = example ? props.date.toLocaleString("ru-RU", { month: "long" }) : '';
+  const year = example ? props.date.getFullYear() : '';
+  const day = example ? props.date.toLocaleString("ru-RU", { day: "2-digit" }) : '';
 
   return (
     <Dates>

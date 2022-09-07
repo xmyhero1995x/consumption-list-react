@@ -10,8 +10,7 @@ const Wrapper = styled.section`
   background-color: rgb(0, 0, 0);
   border-radius: 1rem;
   box-shadow: 10px 10px 15px 5px black;
-  border:1px solid white;
-
+  border: 1px solid white;
 `;
 
 const Description = styled.div`
@@ -61,12 +60,14 @@ const Title = styled.p`
 
 export const CostItem = (props) => {
   return (
-    <Wrapper>
-      <CostDate date={props.date} />
-      <Description>
-        <Title>{props.description}</Title>
-        <Price>${props.amount}</Price>
-      </Description>
-    </Wrapper>
+    <li>
+      <Wrapper>
+        <CostDate date={props.date} />
+        <Description>
+          <Title>{props.description}</Title>
+          <Price>${props.amount}</Price>
+        </Description>
+      </Wrapper>
+    </li>
   );
 };

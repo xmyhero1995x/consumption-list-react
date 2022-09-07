@@ -1,5 +1,8 @@
 import styled from "styled-components";
-import { CostItem } from "./CostItem";
+import { CostsFilter } from "./CostsFilter";
+import React, { useState } from "react";
+import { CostList } from "./CostsList";
+import { CostsDiagram } from "./CostsDiagram";
 
 const Wrapper = styled.section`
   padding: 1rem;
@@ -10,27 +13,31 @@ const Wrapper = styled.section`
   border-radius: 1rem;
   box-shadow: 10px 10px 10px 1px violet;
   border: 5px solid black;
-  outline: 2px solid white
+  outline: 2px solid white;
 `;
 
 export const Costs = (props) => {
+  const [selectedYear, setSelectedYear] = useState("2021");
+
+  const yearChangeHandler = (year) => {
+    setSelectedYear(year);
+  };
+
+  const filteredCosts = props.costs.filter((cost) => {
+    return cost.date.getFullYear().toString === selectedYear;
+  });
+
+ 
+
   return (
-    <Wrapper>
-      <CostItem
-        date={props.costs[0].date}
-        description={props.costs[0].description}
-        amount={props.costs[0].amount}
-      />
-      <CostItem
-        date={props.costs[1].date}
-        description={props.costs[1].description}
-        amount={props.costs[1].amount}
-      />
-      <CostItem
-        date={props.costs[2].date}
-        description={props.costs[2].description}
-        amount={props.costs[2].amount}
-      />
-    </Wrapper>
+    <div>
+      <Wrapper>
+        <CostsFilter
+          year={selectedYear}
+          onChangeYear={yearChangeHandler} />
+          <CostsDiagram costs={filteredCosts}/>
+          <CostList costs={filteredCosts}/>
+      </Wrapper>
+    </div>
   );
 };
